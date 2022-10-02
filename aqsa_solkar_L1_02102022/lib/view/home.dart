@@ -21,7 +21,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // appBar: AppBar(
       //   title: Text(widget.title),
       // ),
-      body: ResponsiveLayout(desktopView: DeskTopView(),
+      body: ResponsiveLayout(
+          desktopView: DeskTopView(),
           tabletView:TabletView(),
           mobileView: MobileView())
     );

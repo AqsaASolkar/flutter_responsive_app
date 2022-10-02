@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'footer.dart';
+
 class MobileView extends StatefulWidget {
   const MobileView({Key? key}) : super(key: key);
 
@@ -10,10 +12,12 @@ class MobileView extends StatefulWidget {
 class _MobileViewState extends State<MobileView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text(
-        'mobile view'
-      ),
+    return ListView(
+      itemExtent: MediaQuery.of(context).size.height,
+      children: const [
+        Text('landing page'),
+        Footer(isMobile: true),
+      ],
     );
   }
 }

@@ -9,7 +9,7 @@ Widget getImage({required String name}){
 Widget textWidget(
     {FontWeight textFontWeight = FontWeight.normal,
       required double textSize,
-      Color textColor = Colors.white,
+      Color textColor = Colors.black,
       TextDecoration textDecoration = TextDecoration.none,
       double lineHeight = 1, required String text}) {
   return Text(text,

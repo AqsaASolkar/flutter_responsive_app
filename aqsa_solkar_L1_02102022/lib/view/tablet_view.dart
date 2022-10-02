@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'footer.dart';
+
 class TabletView extends StatefulWidget {
   const TabletView({Key? key}) : super(key: key);
 
@@ -10,8 +12,12 @@ class TabletView extends StatefulWidget {
 class _TabletViewState extends State<TabletView> {
   @override
   Widget build(BuildContext context) {
-    return const Text(
-        'tablet view'
+    return ListView(
+      itemExtent: MediaQuery.of(context).size.height,
+      children: const [
+        Text('landing page'),
+        Footer(isMobile: true),
+      ],
     );
   }
 }
