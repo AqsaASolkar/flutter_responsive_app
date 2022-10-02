@@ -97,7 +97,6 @@ class Footer extends StatelessWidget {
 
   Widget titleDescription(String title,String number,String address){
     return Column(
-
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         textWidget(textSize: 30, text: title,textColor: Colors.white),

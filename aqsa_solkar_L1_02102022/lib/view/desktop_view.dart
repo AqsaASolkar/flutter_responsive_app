@@ -1,4 +1,5 @@
 import 'package:aqsa_solkar_l1_02102022/res/constant.dart';
+import 'package:aqsa_solkar_l1_02102022/view/coffee_logos.dart';
 import 'package:flutter/material.dart';
 
 import '../res/ui_helper.dart';
@@ -18,6 +19,7 @@ class _DeskTopViewState extends State<DeskTopView> {
       itemExtent: MediaQuery.of(context).size.height,
       children: const [
         LandingScreen(),
+        CoffeeLogos(),
         Footer(),
       ],
     );
@@ -52,8 +54,32 @@ class LandingScreen extends StatelessWidget {
           const SizedBox(height: 20),
           const Divider(color: Colors.grey,),
           const SizedBox(height: 20),
+          detail(),
         ],
       ),
+    );
+  }
+
+  Widget detail(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        titleDescription('120K','Testimonial','Testimonial from \nvarious customers who \ntrust us'),
+        const SizedBox(width: 20),
+        titleDescription('340+','Exclusive Product', 'Premium with \nquality ingredients.'),
+      ],
+    );
+  }
+
+  Widget titleDescription(String title,String number,String address){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        textWidget(textSize: 40, text: title,textColor: Colors.amber),
+        const SizedBox(height: 20),
+        textWidget(textSize: 16, text: number,textColor: Colors.white),
+        const SizedBox(height: 8),
+      ],
     );
   }
 

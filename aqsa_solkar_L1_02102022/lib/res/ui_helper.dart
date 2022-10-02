@@ -2,9 +2,18 @@ import 'package:aqsa_solkar_l1_02102022/res/constant.dart';
 import 'package:flutter/material.dart';
 
 
-Widget getImage({required String name}){
-  return Image.asset(name.toPng,fit: BoxFit.fill);
+Widget getImage({required String name,double? height,double? width}){
+  return Image.asset(name.toPng,fit: BoxFit.fill,height: height,width: width);
 }
+
+
+List<String> coffeeLogos = [
+  'logocoffee1',
+  'logocoffee2',
+  'logocoffee3',
+  'logocoffee4',
+  'logocoffee5'
+];
 
 Widget textWidget(
     {FontWeight textFontWeight = FontWeight.normal,

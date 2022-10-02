@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'coffee_logos.dart';
 import 'footer.dart';
 
 class MobileView extends StatefulWidget {
@@ -16,6 +17,7 @@ class _MobileViewState extends State<MobileView> {
       itemExtent: MediaQuery.of(context).size.height,
       children: const [
         Text('landing page'),
+        CoffeeLogos(),
         Footer(isMobile: true),
       ],
     );
