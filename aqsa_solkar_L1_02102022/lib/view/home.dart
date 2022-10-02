@@ -1,4 +1,10 @@
+import 'package:aqsa_solkar_l1_02102022/Responsive/responsive_layout.dart';
+import 'package:aqsa_solkar_l1_02102022/view/desktop_view.dart';
+import 'package:aqsa_solkar_l1_02102022/view/mobile_view.dart';
+import 'package:aqsa_solkar_l1_02102022/view/tablet_view.dart';
 import 'package:flutter/material.dart';
+
+import '../res/constant.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -15,9 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: const Center(
-        child: Text('Test app'),
-      ),
+      body:const ResponsiveLayout(desktopView: DeskTopView(), tabletView:TabletView(), mobileView: MobileView())
     );
   }
 }
