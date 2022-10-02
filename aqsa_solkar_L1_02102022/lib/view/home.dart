@@ -17,11 +17,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-        return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body:const ResponsiveLayout(desktopView: DeskTopView(), tabletView:TabletView(), mobileView: MobileView())
+        return const Scaffold(
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      // ),
+      body: ResponsiveLayout(desktopView: DeskTopView(),
+          tabletView:TabletView(),
+          mobileView: MobileView())
     );
   }
 }
