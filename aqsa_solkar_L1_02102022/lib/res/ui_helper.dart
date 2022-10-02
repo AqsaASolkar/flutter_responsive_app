@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 Widget getImage({required String name,double? height,double? width}){
-  return Image.asset(name.toPng,fit: BoxFit.fill,height: height,width: width);
+  return Image.asset(name.toPng,fit: BoxFit.fitHeight,height: height,width: width,);
 }
 
 
@@ -32,3 +32,4 @@ Widget textWidget(
     ),
   );
 }
+

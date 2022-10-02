@@ -1,7 +1,7 @@
+import 'package:aqsa_solkar_l1_02102022/view/position_scrollable.dart';
 import 'package:flutter/material.dart';
-
-import 'coffee_logos.dart';
-import 'footer.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../res/header.dart';
 
 class MobileView extends StatefulWidget {
   const MobileView({Key? key}) : super(key: key);
@@ -11,15 +11,25 @@ class MobileView extends StatefulWidget {
 }
 
 class _MobileViewState extends State<MobileView> {
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      itemExtent: MediaQuery.of(context).size.height,
-      children: const [
-        Text('landing page'),
-        CoffeeLogos(),
-        Footer(isMobile: true),
-      ],
+    return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(80.0), // here the desired height
+          child: Header(
+            headerList: const ['Home', 'Premium', 'Footer'],
+            onTapHeader: (int index) {
+              itemScrollController.jumpTo(index: index);
+            },
+          )),
+      body: PositionScrollableList(
+        itemScrollController: itemScrollController,
+        itemPositionsListener: itemPositionsListener,
+        isMobile: true,
+      ),
     );
   }
 }
