@@ -1,3 +1,4 @@
+import 'package:aqsa_solkar_l1_02102022/res/get_widget_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,6 @@ import 'coffee_logos.dart';
 class PremiumView extends StatelessWidget {
   final bool isMobile;
   const PremiumView({Key? key, this.isMobile = false}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,39 +44,42 @@ class PremiumView extends StatelessWidget {
       direction: isMobile ? Axis.vertical : Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Stack(children: [
-          Padding(
-            padding: EdgeInsets.only(
-                right:
-                    isMobile ? 90 : MediaQuery.of(context).size.width * 0.04),
-            child: getImage(
-                fit: BoxFit.contain,
-                name: 'quality1',
-                height: isMobile
-                    ? MediaQuery.of(context).size.height * 0.4
-                    : MediaQuery.of(context).size.height * 0.5,
-                width: isMobile
-                    ? MediaQuery.of(context).size.width * 0.8
-                    : MediaQuery.of(context).size.width * 0.3),
-          ),
-          Positioned(
-              right: 0,
-              top: MediaQuery.of(context).size.height * 0.1,
-              child: getImage(
-                  name: 'quality2',
-                  height: isMobile
-                      ? MediaQuery.of(context).size.height * 0.2
-                      : MediaQuery.of(context).size.height * 0.3,
-                  width: isMobile
-                      ? MediaQuery.of(context).size.width * 0.5
-                      : MediaQuery.of(context).size.width * 0.2))
-        ]),
+        imageWidget(context),
         isMobile
             ? SizedBox(height: MediaQuery.of(context).size.width * 0.02)
             : SizedBox(width: MediaQuery.of(context).size.width * 0.015),
-        description()
+        isMobile ? description() : Flexible(child: description())
       ],
     );
+  }
+
+  Widget imageWidget(BuildContext context) {
+    return Stack(children: [
+      Padding(
+        padding: EdgeInsets.only(
+            right: isMobile ? 90 : MediaQuery.of(context).size.width * 0.07),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: getImage(
+              fit: BoxFit.fitHeight,
+              name: 'quality1',
+              height: isMobile
+                  ? MediaQuery.of(context).size.height * 0.4
+                  : MediaQuery.of(context).size.height * 0.5),
+        ),
+      ),
+      Positioned(
+          right: isMobile ? 40 : 0,
+          top: MediaQuery.of(context).size.height * 0.1,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: getImage(
+                name: 'quality2',
+                height: isMobile
+                    ? MediaQuery.of(context).size.height * 0.2
+                    : MediaQuery.of(context).size.height * 0.3),
+          ))
+    ]);
   }
 
   Widget description() {
@@ -91,9 +94,9 @@ class PremiumView extends StatelessWidget {
         const SizedBox(height: 15),
         textWidget(
             textSize: 16,
-            text: 'product description product \ndescription '
+            text: 'product description product description '
                 'product description '
-                '\nproduct description product description',
+                'product description product description',
             textColor: Colors.grey),
         const SizedBox(height: 15),
         actionButtons()
@@ -102,8 +105,10 @@ class PremiumView extends StatelessWidget {
   }
 
   Widget actionButtons() {
-    return Row(
-      children: [buyNowButton(), const SizedBox(width: 40), seeMoreButton()],
+    return FittedBox(
+      child: Row(
+        children: [buyNowButton(), const SizedBox(width: 40), seeMoreButton()],
+      ),
     );
   }
 

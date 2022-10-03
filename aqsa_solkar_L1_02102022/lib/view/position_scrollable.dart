@@ -31,12 +31,10 @@ class PositionScrollableList extends StatelessWidget {
             return LandingScreen(
                 isMobile: isMobile, itemScrollController: itemScrollController);
           case 1:
-            return ExploreView(isMobile: isMobile);
-          case 2:
             return ProductsView(isMobile: isMobile, isTablet: isTablet);
-          case 3:
+          case 2:
             return PremiumView(isMobile: isMobile);
-          case 4:
+          case 3:
             return Footer(isMobile: isMobile);
           default:
             return Container();
