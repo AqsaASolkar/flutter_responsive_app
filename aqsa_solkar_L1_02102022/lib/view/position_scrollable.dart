@@ -1,9 +1,8 @@
 import 'package:aqsa_solkar_l1_02102022/view/premium_page.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
-import 'desktop_view.dart';
 import 'footer.dart';
+import 'landing_page.dart';
 
 class PositionScrollableList extends StatelessWidget {
   final ItemScrollController itemScrollController;
