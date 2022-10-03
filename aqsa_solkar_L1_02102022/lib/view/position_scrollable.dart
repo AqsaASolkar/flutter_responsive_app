@@ -11,7 +11,7 @@ class PositionScrollableList extends StatelessWidget {
   final ItemPositionsListener itemPositionsListener;
   final bool isMobile;
   final bool isTablet;
-  PositionScrollableList(
+  const PositionScrollableList(
       {Key? key,
       required this.itemScrollController,
       this.isMobile = false,
@@ -31,11 +31,14 @@ class PositionScrollableList extends StatelessWidget {
             return LandingScreen(
                 isMobile: isMobile, itemScrollController: itemScrollController);
           case 1:
-            return ProductsView(isMobile: isMobile, isTablet: isTablet);
+            return ExploreView(isMobile: isMobile);
           case 2:
-            return PremiumView(isMobile: isMobile);
+            return ProductsView(isMobile: isMobile, isTablet: isTablet);
           case 3:
+            return PremiumView(isMobile: isMobile);
+          case 4:
             return Footer(isMobile: isMobile);
+
           default:
             return Container();
         }

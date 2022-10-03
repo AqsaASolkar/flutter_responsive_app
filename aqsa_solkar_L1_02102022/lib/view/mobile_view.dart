@@ -13,12 +13,14 @@ class MobileView extends StatefulWidget {
 }
 
 class _MobileViewState extends State<MobileView> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       endDrawer: SizedBox(
         width: double.infinity,
         child: Drawer(
@@ -67,16 +69,17 @@ class _MobileViewState extends State<MobileView> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: logo(),
+        actions: [
+          IconButton(
+              onPressed: () {
+                _scaffoldKey.currentState?.openEndDrawer();
+              },
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              )),
+        ],
       ),
-      // appBar: PreferredSize(
-      //     preferredSize: const Size.fromHeight(80.0), // here the desired height
-      //     child: Header(
-      //       isMobile: true,
-      //       headerList: const ['Home', 'Premium', 'Footer'],
-      //       onTapHeader: (int index) {
-      //         itemScrollController.jumpTo(index: index);
-      //       },
-      //     )),
       body: PositionScrollableList(
         itemScrollController: itemScrollController,
         itemPositionsListener: itemPositionsListener,

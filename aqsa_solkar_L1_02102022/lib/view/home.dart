@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:aqsa_solkar_l1_02102022/Responsive/responsive_layout.dart';
 import 'package:aqsa_solkar_l1_02102022/view/desktop_view.dart';
 import 'package:aqsa_solkar_l1_02102022/view/mobile_view.dart';
@@ -15,10 +16,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Material(
-        child: ResponsiveLayout(
-            desktopView: DeskTopView(),
-            tabletView: TabletView(),
-            mobileView: MobileView()));
+    return Material(
+        child: AnimatedSplashScreen(
+            splash: 'images/loadcoffee.gif',
+            duration: 3000,
+            nextScreen: const ResponsiveLayout(
+                desktopView: DeskTopView(),
+                tabletView: TabletView(),
+                mobileView: MobileView()),
+            splashTransition: SplashTransition.fadeTransition,
+            backgroundColor: Colors.white));
+    // ResponsiveLayout(
+    //     desktopView: DeskTopView(),
+    //     tabletView: TabletView(),
+    //     mobileView: MobileView()));
   }
 }

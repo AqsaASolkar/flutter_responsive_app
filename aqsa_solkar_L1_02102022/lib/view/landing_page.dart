@@ -25,7 +25,6 @@ class _LandingScreenState extends State<LandingScreen> {
         onChange: (Size size) {
           setState(() {
             widgetSize = size;
-            print('size---${size.height}');
           });
         },
         child: Stack(
@@ -39,7 +38,6 @@ class _LandingScreenState extends State<LandingScreen> {
                             onChange: (Size size) {
                               setState(() {
                                 mobileSize = size;
-                                print('size---${size.height}');
                               });
                             },
                             child: description(context)),
@@ -65,13 +63,12 @@ class _LandingScreenState extends State<LandingScreen> {
                     ? (widgetSize != null ? (mobileSize!.height) - 60 : 0)
                     : (widgetSize != null ? widgetSize!.height / 2 : 0),
                 left: (widgetSize != null ? (widgetSize!.width / 2) - 60 : 0),
-                child: InkWell(
+                child: SliderAnimation(
                     onTap: () {
                       widget.itemScrollController.scrollTo(
                           index: 1, duration: const Duration(seconds: 1));
                     },
-                    child: SliderAnimation(
-                        child: getImage(name: 'scroll', height: 120))))
+                    child: getImage(name: 'scroll', height: 120)))
           ],
         ));
     //   LayoutBuilder(

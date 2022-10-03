@@ -49,13 +49,14 @@ class Header extends StatelessWidget {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: headingTitle(header.toString()),
+          child:
+              headingTitle(header.toString(), (headerList.length - 1) != index),
         ),
       ),
     );
   }
 
-  Widget headingTitle(String title) {
+  Widget headingTitle(String title, bool showDivider) {
     return Row(children: [
       Text(
         title,
@@ -63,13 +64,14 @@ class Header extends StatelessWidget {
             color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
       ),
       const SizedBox(width: 10),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 30),
-        child: VerticalDivider(
-          color: Colors.black,
-          thickness: 1,
-        ),
-      )
+      if (showDivider)
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 30),
+          child: VerticalDivider(
+            color: Colors.black,
+            thickness: 1,
+          ),
+        )
     ]);
   }
 }
