@@ -4,8 +4,6 @@ import 'package:aqsa_solkar_l1_02102022/view/mobile_view.dart';
 import 'package:aqsa_solkar_l1_02102022/view/tablet_view.dart';
 import 'package:flutter/material.dart';
 
-import '../res/constant.dart';
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -17,14 +15,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-        return const Material(
-      // appBar: AppBar(
-      //   title: Text(widget.title),
-      // ),
-      child: ResponsiveLayout(
-          desktopView: DeskTopView(),
-          tabletView:TabletView(),
-          mobileView: MobileView())
-    );
+    return const Material(
+        child: ResponsiveLayout(
+            desktopView: DeskTopView(),
+            tabletView: TabletView(),
+            mobileView: MobileView()));
   }
 }

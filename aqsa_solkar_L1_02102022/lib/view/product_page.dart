@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:aqsa_solkar_l1_02102022/model/ProductListResponse.dart';
 import 'package:aqsa_solkar_l1_02102022/res/constant.dart';
 
+import 'animation.dart';
+
 class ProductsView extends StatefulWidget {
   final bool isMobile;
-  const ProductsView({Key? key, this.isMobile = false}) : super(key: key);
+  final bool isTablet;
+  const ProductsView({Key? key, this.isMobile = false, this.isTablet = false})
+      : super(key: key);
 
   @override
   State<ProductsView> createState() => _ProductsViewState();
@@ -75,11 +79,12 @@ class _ProductsViewState extends State<ProductsView>
         children: [
           title(),
           tabs(),
-          widget.isMobile
-              ? const Center(
-                  child: Text('Products'),
-                )
-              : buildGrid(),
+          // widget.isMobile
+          //     ? const Center(
+          //         child: Text('Products'),
+          //       )
+          //     :
+          buildGrid(),
         ],
       ),
     );
@@ -156,15 +161,27 @@ class _ProductsViewState extends State<ProductsView>
         itemCount: selectedProduct?.length ?? 0,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisExtent: 290,
-            crossAxisCount: 3,
+            crossAxisCount: returnCount(),
             crossAxisSpacing: 50,
             mainAxisSpacing: 20),
         itemBuilder: (BuildContext context, int index) {
           Products product = selectedProduct![index];
           return ProductDetails(product: product);
         });
+  }
+
+  int returnCount() {
+    int count = 0;
+    if (widget.isTablet) {
+      count = 2;
+    } else if (widget.isMobile) {
+      count = 1;
+    } else {
+      return 3;
+    }
+    return count;
   }
 }
 
@@ -278,47 +295,8 @@ class _ProductDetailsState extends State<ProductDetails>
               )
             ],
           ),
-          // Container(
-          //   height: 40,
-          //   decoration: const BoxDecoration(
-          //       shape: BoxShape.circle, color: Colors.black),
-          // )
         ],
       ),
-    );
-  }
-}
-
-class SliderAnimation extends StatefulWidget {
-  final Widget child;
-  final Animation<Offset> animationOffset;
-  const SliderAnimation(
-      {Key? key, required this.child, required this.animationOffset})
-      : super(key: key);
-
-  @override
-  State<SliderAnimation> createState() => _SliderAnimationState();
-}
-
-class _SliderAnimationState extends State<SliderAnimation>
-    with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    // animationController =
-    //     AnimationController(vsync: this, duration: const Duration(seconds: 1));
-    // var curved =
-    // CurvedAnimation(parent: animationController, curve: Curves.ease);
-    // animationOffset =
-    //     Tween<Offset>(begin: Offset.zero, end: const Offset(0, -0.2))
-    //         .animate(animationController);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SlideTransition(
-      position: widget.animationOffset,
-      child: widget.child,
     );
   }
 }

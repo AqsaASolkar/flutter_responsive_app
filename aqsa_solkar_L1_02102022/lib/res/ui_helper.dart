@@ -48,7 +48,6 @@ Widget textWidget(
       fontSize: textSize,
       color: textColor,
       decoration: textDecoration,
-      fontFamily: fontBold,
       height: lineHeight,
     ),
   );

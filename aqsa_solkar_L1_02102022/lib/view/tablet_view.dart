@@ -29,6 +29,7 @@ class _TabletViewState extends State<TabletView> {
         itemScrollController: itemScrollController,
         itemPositionsListener: itemPositionsListener,
         isMobile: true,
+        isTablet: true,
       ),
     );
   }

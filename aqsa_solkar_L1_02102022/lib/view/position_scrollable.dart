@@ -1,4 +1,4 @@
-import 'package:aqsa_solkar_l1_02102022/view/explore_view.dart';
+import 'package:aqsa_solkar_l1_02102022/view/explore_page.dart';
 import 'package:aqsa_solkar_l1_02102022/view/premium_page.dart';
 import 'package:aqsa_solkar_l1_02102022/view/product_page.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +10,13 @@ class PositionScrollableList extends StatelessWidget {
   final ItemScrollController itemScrollController;
   final ItemPositionsListener itemPositionsListener;
   final bool isMobile;
+  final bool isTablet;
   PositionScrollableList(
       {Key? key,
       required this.itemScrollController,
       this.isMobile = false,
-      required this.itemPositionsListener})
+      required this.itemPositionsListener,
+      this.isTablet = false})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class PositionScrollableList extends StatelessWidget {
           case 1:
             return ExploreView(isMobile: isMobile);
           case 2:
-            return ProductsView(isMobile: isMobile);
+            return ProductsView(isMobile: isMobile, isTablet: isTablet);
           case 3:
             return PremiumView(isMobile: isMobile);
           case 4:
