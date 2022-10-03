@@ -1,43 +1,89 @@
+import 'package:aqsa_solkar_l1_02102022/res/get_widget_size.dart';
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../res/ui_helper.dart';
 
-class LandingScreen extends StatelessWidget {
+class LandingScreen extends StatefulWidget {
   final bool isMobile;
-  const LandingScreen({Key? key, this.isMobile = false}) : super(key: key);
+  final ItemScrollController itemScrollController;
+  const LandingScreen(
+      {Key? key, this.isMobile = false, required this.itemScrollController})
+      : super(key: key);
 
   @override
+  State<LandingScreen> createState() => _LandingScreenState();
+}
+
+class _LandingScreenState extends State<LandingScreen> {
+  Size? widgetSize;
+  Size? mobileSize;
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: isMobile
-          ? Column(
-              children: [
-                description(context),
-                getImage(name: 'home'),
-              ],
-            )
-          : IntrinsicHeight(
-              child: Row(
-                children: [
-                  Expanded(flex: 5, child: description(context)),
-                  Expanded(
-                      flex: 5,
-                      child: getImage(
-                          name: 'home',
-                          height: MediaQuery.of(context).size.height,
-                          fit: BoxFit.cover)),
-                ],
-              ),
+    return WidgetSize(
+        onChange: (Size size) {
+          setState(() {
+            widgetSize = size;
+            print('size---${size.height}');
+          });
+        },
+        child: Stack(
+          children: [
+            Container(
+              color: Colors.black,
+              child: widget.isMobile
+                  ? Column(
+                      children: [
+                        WidgetSize(
+                            onChange: (Size size) {
+                              setState(() {
+                                mobileSize = size;
+                                print('size---${size.height}');
+                              });
+                            },
+                            child: description(context)),
+                        getImage(name: 'home'),
+                      ],
+                    )
+                  : IntrinsicHeight(
+                      child: Row(
+                        children: [
+                          Expanded(flex: 1, child: description(context)),
+                          Expanded(
+                              flex: 1,
+                              child: getImage(
+                                  name: 'home',
+                                  height: MediaQuery.of(context).size.height,
+                                  fit: BoxFit.cover)),
+                        ],
+                      ),
+                    ),
             ),
-    );
+            Positioned(
+                top: widget.isMobile
+                    ? (widgetSize != null ? (mobileSize!.height) - 60 : 0)
+                    : (widgetSize != null ? widgetSize!.height / 2 : 0),
+                left: (widgetSize != null ? (widgetSize!.width / 2) - 60 : 0),
+                child: InkWell(
+                    onTap: () {
+                      widget.itemScrollController.scrollTo(
+                          index: 1, duration: const Duration(seconds: 1));
+                    },
+                    child: getImage(name: 'scroll', height: 120)))
+          ],
+        ));
+    //   LayoutBuilder(
+    //     builder: (BuildContext context, BoxConstraints constraints) {
+    //   return ;
+    // });
   }
 
   Widget description(BuildContext context) {
     return FittedBox(
       child: Padding(
-        padding: isMobile
-            ? EdgeInsets.zero
+        padding: widget.isMobile
+            ? EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.1)
             : EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.1,
                 right: MediaQuery.of(context).size.width * 0.03),

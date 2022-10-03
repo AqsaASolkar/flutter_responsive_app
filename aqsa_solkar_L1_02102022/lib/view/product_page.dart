@@ -79,11 +79,6 @@ class _ProductsViewState extends State<ProductsView>
         children: [
           title(),
           tabs(),
-          // widget.isMobile
-          //     ? const Center(
-          //         child: Text('Products'),
-          //       )
-          //     :
           buildGrid(),
         ],
       ),

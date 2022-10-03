@@ -4,3 +4,5 @@ extension ImagePath on String {
 
 const mobileWidth = 600;
 const tabletWidth = 800;
+
+List<String> headerList = ['Home', 'Product', 'Premium'];

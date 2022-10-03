@@ -28,7 +28,8 @@ class PositionScrollableList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
-            return LandingScreen(isMobile: isMobile);
+            return LandingScreen(
+                isMobile: isMobile, itemScrollController: itemScrollController);
           case 1:
             return ExploreView(isMobile: isMobile);
           case 2:
