@@ -20,6 +20,7 @@ class _MobileViewState extends State<MobileView> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80.0), // here the desired height
           child: Header(
+            isMobile: true,
             headerList: const ['Home', 'Premium', 'Footer'],
             onTapHeader: (int index) {
               itemScrollController.jumpTo(index: index);

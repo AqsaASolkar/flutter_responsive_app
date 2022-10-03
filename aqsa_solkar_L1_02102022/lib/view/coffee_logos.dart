@@ -10,11 +10,13 @@ class CoffeeLogos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height* 0.1),
+      padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height * 0.05),
       child: Wrap(
-        spacing: isMobile?20:70,
-        children: List.generate(coffeeLogos.length, (index){
-          return Image.asset(coffeeLogos[index].toPng,height:isMobile? 100:150);
+        spacing: isMobile ? 20 : 70,
+        children: List.generate(coffeeLogos.length, (index) {
+          return Image.asset(coffeeLogos[index].toPng,
+              height: isMobile ? 100 : 150);
         }),
       ),
     );
