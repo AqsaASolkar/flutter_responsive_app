@@ -37,7 +37,7 @@ Widget logo() {
 Widget textWidget(
     {FontWeight textFontWeight = FontWeight.normal,
     required double textSize,
-    Color textColor = Colors.black,
+    Color textColor = Colors.black87,
     TextDecoration textDecoration = TextDecoration.none,
     double lineHeight = 1,
     required String text}) {
@@ -50,6 +50,38 @@ Widget textWidget(
       decoration: textDecoration,
       fontFamily: fontBold,
       height: lineHeight,
+    ),
+  );
+}
+
+ElevatedButton elevatedButton(
+    {required String text, required VoidCallback onPressed}) {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      primary: Colors.black,
+    ),
+    onPressed: onPressed,
+    child: textWidget(textSize: 16, text: text, textColor: Colors.white),
+  );
+}
+
+Widget heading({required String text, bool isMobile = false}) {
+  return FittedBox(
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 30,
+          width: 2,
+          color: Colors.orange,
+        ),
+        const SizedBox(width: 10),
+        Text(
+          text,
+          style: const TextStyle(
+              color: Colors.black87, fontSize: 30, fontWeight: FontWeight.w600),
+        ),
+      ],
     ),
   );
 }

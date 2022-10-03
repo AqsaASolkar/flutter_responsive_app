@@ -17,8 +17,9 @@ class PremiumView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          title(
-              'We offer a premium and better quality \npreparation just for you.'),
+          heading(
+              text:
+                  'We offer a premium and better quality \npreparation just for you.'),
           const SizedBox(height: 30),
           detail(context),
           const SizedBox(height: 30),
@@ -30,7 +31,12 @@ class PremiumView extends StatelessWidget {
   }
 
   Widget title(String name) {
-    return textWidget(textSize: isMobile ? 20 : 30, text: name);
+    return FittedBox(
+      child: textWidget(
+          textSize: isMobile ? 20 : 30,
+          text: name,
+          textFontWeight: FontWeight.w600),
+    );
   }
 
   Widget detail(BuildContext context) {
@@ -44,6 +50,7 @@ class PremiumView extends StatelessWidget {
                 right:
                     isMobile ? 90 : MediaQuery.of(context).size.width * 0.04),
             child: getImage(
+                fit: BoxFit.contain,
                 name: 'quality1',
                 height: isMobile
                     ? MediaQuery.of(context).size.height * 0.4
@@ -101,12 +108,9 @@ class PremiumView extends StatelessWidget {
   }
 
   Widget buyNowButton() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.black,
-      ),
+    return elevatedButton(
       onPressed: () {},
-      child: textWidget(textSize: 16, text: 'Buy Now', textColor: Colors.white),
+      text: 'Buy now',
     );
   }
 

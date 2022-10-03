@@ -20,7 +20,7 @@ class _TabletViewState extends State<TabletView> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80.0), // here the desired height
           child: Header(
-            headerList: const ['Home', 'Premium', 'Footer'],
+            headerList: const ['Home', 'Explore', 'Product', 'Premium'],
             onTapHeader: (int index) {
               itemScrollController.jumpTo(index: index);
             },

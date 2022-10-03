@@ -48,7 +48,7 @@ class Header extends StatelessWidget {
       },
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: headingTitle(header.toString()),
         ),
       ),
