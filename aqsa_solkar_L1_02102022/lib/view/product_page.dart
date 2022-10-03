@@ -2,7 +2,6 @@ import 'package:aqsa_solkar_l1_02102022/res/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:aqsa_solkar_l1_02102022/model/ProductListResponse.dart';
 import 'package:aqsa_solkar_l1_02102022/res/constant.dart';
-import 'package:flutter/material.dart';
 
 class ProductsView extends StatefulWidget {
   final bool isMobile;

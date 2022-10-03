@@ -11,36 +11,84 @@ class ExploreView extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * 0.15,
-          vertical: MediaQuery.of(context).size.height * 0.05),
+          vertical: MediaQuery.of(context).size.height * 0.07),
       child: Column(
-        children: [
-          isMobile
-              ? const Center(
-                  child: Text('mobile explore view'),
-                )
-              : titleAndButton(),
-          //SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-        ],
+        children: [titleAndButton(), detail(context)],
       ),
     );
   }
 
-  Widget detail() {
-    return Container();
+  Widget detail(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.13),
+        child: Wrap(
+            children: List.generate(exploreList.length, (index) {
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              VerticalDivider(
+                color: index == 0 ? Colors.transparent : Colors.black,
+                thickness: 1,
+                indent: 30,
+                endIndent: 30,
+              ),
+              if (!isMobile) const SizedBox(width: 25),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: isMobile
+                    ? CrossAxisAlignment.center
+                    : CrossAxisAlignment.start,
+                children: [
+                  image(exploreList[index].image),
+                  const SizedBox(height: 30),
+                  heading(
+                      text: exploreList[index].title,
+                      hideDivider: true,
+                      fontSize: 25),
+                  const SizedBox(height: 15),
+                  textWidget(
+                      textSize: 18, text: exploreList[index].description),
+                  const SizedBox(height: 20),
+                ],
+              ),
+              if (!isMobile) const SizedBox(width: 25),
+            ],
+          );
+        })));
+  }
+
+  Widget image(String imgName) {
+    return getImage(name: imgName, height: 100, width: 100);
   }
 
   Widget titleAndButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        (heading(
-            text: 'Speciality Coffee that make you \nhappy and cheer you up!')),
-        elevatedButton(
-          onPressed: () {},
-          text: 'SEE MORE',
-        )
-      ],
-    );
+    return isMobile
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              (heading(
+                  text:
+                      'Speciality Coffee that make you \nhappy and cheer you up!')),
+              const SizedBox(height: 20),
+              elevatedButton(
+                onPressed: () {},
+                text: 'SEE MORE',
+              )
+            ],
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              (heading(
+                  text:
+                      'Speciality Coffee that make you \nhappy and cheer you up!')),
+              elevatedButton(
+                onPressed: () {},
+                text: 'SEE MORE',
+              )
+            ],
+          );
   }
 }
 
@@ -54,15 +102,15 @@ class ExploreObj {
 
 List<ExploreObj> exploreList = [
   ExploreObj(
-      image: 'speciality1',
+      image: 'specialty1',
       title: 'Selected coffee',
       description: 'description description description \ndescription'),
   ExploreObj(
-      image: 'speciality2',
+      image: 'specialty2',
       title: 'Delicious Cookies',
       description: 'description description description \ndescription'),
   ExploreObj(
-      image: 'speciality3',
+      image: 'specialty3',
       title: 'Enjoy at Home',
       description: 'description description description \ndescription'),
 ];

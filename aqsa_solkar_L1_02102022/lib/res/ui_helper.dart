@@ -59,27 +59,35 @@ ElevatedButton elevatedButton(
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: Colors.black,
+      padding: const EdgeInsets.fromLTRB(20, 24, 20, 24),
     ),
     onPressed: onPressed,
     child: textWidget(textSize: 16, text: text, textColor: Colors.white),
   );
 }
 
-Widget heading({required String text, bool isMobile = false}) {
+Widget heading(
+    {required String text,
+    bool isMobile = false,
+    bool hideDivider = false,
+    double fontSize = 30}) {
   return FittedBox(
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 30,
-          width: 2,
-          color: Colors.orange,
-        ),
-        const SizedBox(width: 10),
+        if (!hideDivider)
+          Container(
+            height: 30,
+            width: 2,
+            color: Colors.orange,
+          ),
+        if (!hideDivider) const SizedBox(width: 10),
         Text(
           text,
-          style: const TextStyle(
-              color: Colors.black87, fontSize: 30, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              color: Colors.black87,
+              fontSize: fontSize,
+              fontWeight: FontWeight.w600),
         ),
       ],
     ),
