@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../res/ui_helper.dart';
+import 'animation.dart';
 
 class ExploreView extends StatelessWidget {
   final bool isMobile;
@@ -42,7 +43,7 @@ class ExploreView extends StatelessWidget {
                       ? CrossAxisAlignment.center
                       : CrossAxisAlignment.start,
                   children: [
-                    image(exploreList[index].image),
+                    SliderAnimation(child: image(exploreList[index].image)),
                     const SizedBox(height: 30),
                     heading(
                         text: exploreList[index].title,

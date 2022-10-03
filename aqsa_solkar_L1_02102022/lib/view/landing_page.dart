@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../res/ui_helper.dart';
+import 'animation.dart';
 
 class LandingScreen extends StatefulWidget {
   final bool isMobile;
@@ -69,7 +70,8 @@ class _LandingScreenState extends State<LandingScreen> {
                       widget.itemScrollController.scrollTo(
                           index: 1, duration: const Duration(seconds: 1));
                     },
-                    child: getImage(name: 'scroll', height: 120)))
+                    child: SliderAnimation(
+                        child: getImage(name: 'scroll', height: 120))))
           ],
         ));
     //   LayoutBuilder(

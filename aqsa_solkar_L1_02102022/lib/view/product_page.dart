@@ -19,9 +19,14 @@ class _ProductsViewState extends State<ProductsView>
     with SingleTickerProviderStateMixin {
   ProductListResponse productListResponse = ProductListResponse();
   List<Products>? selectedProduct = [];
+  late AnimationController animationController;
 
   @override
   void initState() {
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500))
+      ..forward();
+
     var jsonData = {
       "product_data": [
         {
@@ -101,6 +106,10 @@ class _ProductsViewState extends State<ProductsView>
           return tabDetails(productData, onTap: () {
             setState(() {
               selectedProduct = productData.products;
+
+              animationController.reverse().then((value) {
+                animationController.forward();
+              });
             });
           },
               showDivider:
@@ -163,7 +172,10 @@ class _ProductsViewState extends State<ProductsView>
             mainAxisSpacing: 20),
         itemBuilder: (BuildContext context, int index) {
           Products product = selectedProduct![index];
-          return ProductDetails(product: product);
+          return ProductDetails(
+            product: product,
+            animationController: animationController,
+          );
         });
   }
 
@@ -182,7 +194,10 @@ class _ProductsViewState extends State<ProductsView>
 
 class ProductDetails extends StatefulWidget {
   final Products product;
-  const ProductDetails({Key? key, required this.product}) : super(key: key);
+  final AnimationController animationController;
+  const ProductDetails(
+      {Key? key, required this.product, required this.animationController})
+      : super(key: key);
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -222,75 +237,61 @@ class _ProductDetailsState extends State<ProductDetails>
   }
 
   Widget product() {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.black12, blurRadius: 2, offset: Offset(0, 2))
-          ]),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 30),
-                decoration: BoxDecoration(color: Colors.grey.shade200),
-                child: InkWell(
-                  onTap: () {},
-                  onHover: (isHover) {
-                    {
-                      if (isHover) {
-                        setState(() {
-                          animationController.forward();
-                        });
-                      } else {
-                        setState(() {
-                          animationController.reverse();
-                        });
-                      }
-                    }
-                  },
+    return ScaleTransition(
+      scale: widget.animationController,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.black12, blurRadius: 2, offset: Offset(0, 2))
+            ]),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  decoration: BoxDecoration(color: Colors.grey.shade200),
                   child: SliderAnimation(
-                    animationOffset: animationOffset!,
                     child: Image.asset(
                       widget.product.image?.toPng ?? '',
                       height: 150,
                     ),
                   ),
                 ),
-              ),
-              Container(
-                width: double.infinity,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                decoration: const BoxDecoration(color: Colors.white),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "\$${widget.product.price}",
-                      style: const TextStyle(
-                          color: Colors.black87,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      "${widget.product.productName}",
-                      style: const TextStyle(
-                          color: Colors.black87,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
+                Container(
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "\$${widget.product.price}",
+                        style: const TextStyle(
+                            color: Colors.black87,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        "${widget.product.productName}",
+                        style: const TextStyle(
+                            color: Colors.black87,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
