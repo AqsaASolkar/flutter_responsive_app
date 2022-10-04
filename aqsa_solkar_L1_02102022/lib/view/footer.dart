@@ -108,12 +108,12 @@ class Footer extends StatelessWidget {
   Widget socialMediaIcons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Icon(Icons.facebook, size: 26, color: Colors.grey),
-        SizedBox(width: 8),
-        Icon(Icons.facebook, size: 26, color: Colors.grey),
-        SizedBox(width: 8),
-        Icon(Icons.facebook, size: 26, color: Colors.grey),
+      children: [
+        const Icon(Icons.facebook, size: 26, color: Colors.grey),
+        const SizedBox(width: 8),
+        getImage(name: 'insta', height: 30, width: 30),
+        const SizedBox(width: 8),
+        getImage(name: 'twitter', height: 30, width: 30)
       ],
     );
   }
